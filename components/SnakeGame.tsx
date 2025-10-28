@@ -122,7 +122,7 @@ export const SnakeGame: React.FC<{ onRestart: () => void }> = ({ onRestart }) =>
       <div className="w-full max-w-2xl bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-700 flex flex-col items-center p-6">
         <header className="w-full flex justify-between items-center mb-4">
            <div>
-              <h2 className="text-lg font-bold text-white">Snake Game</h2>
+              <h2 className="text-lg font-bold text-white">Highshift Arcade</h2>
               <p className="text-sm text-indigo-400">Score: {score}</p>
            </div>
            <button onClick={onRestart} className="text-sm text-gray-400 hover:text-white transition">Back to Services</button>

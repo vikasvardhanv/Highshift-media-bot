@@ -63,7 +63,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ service, chatHistory, onSendMe
       <div className="w-full max-w-2xl h-[80vh] max-h-[700px] bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-700 flex flex-col">
         <header className="p-4 border-b border-gray-700 flex justify-between items-center">
           <div>
-             <h2 className="text-lg font-bold text-white">AI Consultation</h2>
+             <h2 className="text-lg font-bold text-white">Highshift AI Assistant</h2>
              <p className="text-sm text-indigo-400">{service.name}</p>
           </div>
           <button onClick={onRestart} className="text-sm text-gray-400 hover:text-white transition">Start Over</button>
