@@ -1,12 +1,13 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import type { ChatMessage, Service, Question } from '../types';
 import { AppState } from '../types';
-import { BrandLogo } from '../constants';
+import { BrandLogo, WhatsAppIcon } from '../constants';
 
 interface ChatbotProps {
   service: Service;
   chatHistory: ChatMessage[];
+  userAnswers: string[];
   onSendMessage: (message: string) => void;
   isLoading: boolean;
   appState: AppState;
@@ -28,7 +29,7 @@ const BotMessage: React.FC<{ text: string }> = ({ text }) => (
              <BrandLogo className="w-full h-full" />
         </div>
         <div className="glass-panel rounded-2xl rounded-tl-none px-5 py-3.5 max-w-md border-white/10">
-            <p className="text-white/90 leading-relaxed text-[15px]">{text}</p>
+            <p className="text-white/90 leading-relaxed text-[15px] whitespace-pre-wrap">{text}</p>
         </div>
     </div>
 );
@@ -42,7 +43,7 @@ const UserMessage: React.FC<{ text: string }> = ({ text }) => (
 );
 
 
-export const Chatbot: React.FC<ChatbotProps> = ({ service, chatHistory, onSendMessage, isLoading, appState, onRestart, currentQuestion }) => {
+export const Chatbot: React.FC<ChatbotProps> = ({ service, chatHistory, userAnswers, onSendMessage, isLoading, appState, onRestart, currentQuestion }) => {
   const [input, setInput] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
 
@@ -64,10 +65,37 @@ export const Chatbot: React.FC<ChatbotProps> = ({ service, chatHistory, onSendMe
     }
   };
 
+  const mailtoUrl = useMemo(() => {
+    const subject = `Highshift AI Consultation - ${service.name}`;
+    const body = `Hello Highshift Media Team,
+
+I'm interested in the ${service.name} service. Here is the summary of my requirements:
+
+${userAnswers.map((ans, i) => `Q${i+1}: ${ans}`).join('\n')}
+
+I look forward to discussing this with you.
+
+Best regards,
+A Potential Client`;
+
+    return `mailto:info@highshiftmedia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }, [service, userAnswers]);
+
   const showOptions = appState === AppState.CHAT && currentQuestion && currentQuestion.options.length > 0;
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-4">
+      {/* Floating WhatsApp FAB */}
+      <a 
+        href="https://Wa.me/+16307033569" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group flex items-center gap-3"
+      >
+        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-bold">Chat on WhatsApp</span>
+        <WhatsAppIcon />
+      </a>
+
       <div className="w-full max-w-3xl h-[85vh] max-h-[800px] glass-panel rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col border-white/5">
         <header className="px-8 py-6 border-b border-white/5 flex justify-between items-center bg-white/5 backdrop-blur-3xl">
           <div className="flex items-center gap-4">
@@ -104,10 +132,10 @@ export const Chatbot: React.FC<ChatbotProps> = ({ service, chatHistory, onSendMe
             </div>
           )}
 
-          {appState === AppState.BOOKING && (
+          {appState === AppState.BOOKING && !isLoading && (
              <div className="flex justify-start pt-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
                  <a 
-                    href="mailto:info@highshiftmedia.com" 
+                    href={mailtoUrl} 
                     className="group bg-sky-500 text-white font-bold py-4 px-8 rounded-2xl hover:bg-sky-400 transition-all duration-300 shadow-lg shadow-sky-500/20 inline-flex items-center gap-3 relative overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
@@ -115,7 +143,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ service, chatHistory, onSendMe
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                     </svg>
-                    Book Consultation
+                    Send Information to info@highshiftmedia.com
                 </a>
              </div>
           )}

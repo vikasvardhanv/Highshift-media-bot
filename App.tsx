@@ -71,7 +71,7 @@ function App() {
       setChatHistory(prev => [
           ...prev, 
           { sender: 'bot', text: summary },
-          { sender: 'bot', text: "Thank you! To schedule a consultation, please click the button below to send us an email." }
+          { sender: 'bot', text: "Thank you! Everything is ready. Please click the button below to send your information to our development team." }
       ]);
       setIsLoading(false);
     }
@@ -103,6 +103,7 @@ function App() {
           return <Chatbot 
                     service={selectedService}
                     chatHistory={chatHistory}
+                    userAnswers={userAnswers}
                     onSendMessage={handleSendMessage}
                     isLoading={isLoading}
                     appState={appState}
