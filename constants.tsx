@@ -1,6 +1,9 @@
 
 import React from 'react';
-import type { Service, Question, IndustryAgent } from './types';
+import type { Service, Question } from './types';
+import { IndustryAgentsIcon } from './components/icons/IndustryAgentsIcon';
+import { MarketingHubIcon } from './components/icons/MarketingHubIcon';
+
 
 export const BrandLogo = ({ className = "h-32 w-32" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
