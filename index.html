@@ -75,19 +75,46 @@
       @keyframes textShine {
         to { background-position: 200% center; }
       }
+
+      /* Hide scrollbar */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      .animate-in {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      
+      .fade-in {
+        animation-name: fadeIn;
+      }
+      
+      .slide-in-from-bottom-2 {
+        --tw-enter-translate-y: 0.5rem;
+      }
+      
+      .slide-in-from-bottom-4 {
+        --tw-enter-translate-y: 1rem;
+      }
+      
+      .slide-in-from-left-4 {
+        --tw-enter-translate-x: -1rem;
+      }
+      
+      .slide-in-from-right-4 {
+        --tw-enter-translate-x: 1rem;
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react-markdown": "https://esm.sh/react-markdown@9",
-    "remark-gfm": "https://esm.sh/remark-gfm@4"
-  }
-}
-</script>
 </head>
   <body class="text-white">
     <div class="liquid-bg"></div>

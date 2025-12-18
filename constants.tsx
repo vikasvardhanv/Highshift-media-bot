@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { Service, Question } from './types';
+import type { Service, Question, IndustryAgent } from './types';
 
 export const BrandLogo = ({ className = "h-32 w-32" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@ export const BrandLogo = ({ className = "h-32 w-32" }: { className?: string }) =
   </svg>
 );
 
-// Service Icons
+// ===== ICONS =====
 const ChatbotIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 mb-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -122,10 +122,32 @@ export const WhatsAppIcon = () => (
 
 export const SERVICES: Service[] = [
   {
+    id: 'industry_agents',
+    name: 'Industry AI Agents',
+    description: 'Pre-built AI agents for Restaurants, Clinics, Salons, Car Dealerships, and Construction companies.',
+    icon: <IndustryAgentsIcon />,
+    category: 'industry',
+  },
+  {
+    id: 'marketing_hub',
+    name: 'Marketing & Automation Hub',
+    description: 'Content creation, social media automation, email marketing, and lead generation tools.',
+    icon: <MarketingHubIcon />,
+    category: 'marketing',
+  },
+  {
+    id: 'whatsapp_bot',
+    name: 'WhatsApp Business Bot',
+    description: 'AI-powered WhatsApp bot for customer support, lead qualification, bookings, and follow-ups.',
+    icon: <WhatsAppIcon />,
+    category: 'communication',
+  },
+  {
     id: 'chatbot',
     name: 'AI Chatbot Development',
     description: 'Engage customers 24/7 with intelligent, conversational AI chatbots tailored to your business needs.',
-    icon: <ChatbotIcon />
+    icon: <ChatbotIcon />,
+    category: 'automation',
   },
   {
     id: 'website_creation',
@@ -137,52 +159,58 @@ export const SERVICES: Service[] = [
     id: 'content',
     name: 'AI-Powered Content Creation',
     description: 'Generate high-quality blog posts, marketing copy, and social media content at scale with AI.',
-    icon: <ContentIcon />
+    icon: <ContentIcon />,
+    category: 'marketing',
   },
   {
     id: 'automation',
     name: 'AI Business Automation',
     description: 'Streamline your workflows, automate repetitive tasks, and increase efficiency with custom AI solutions.',
-    icon: <AutomationIcon />
+    icon: <AutomationIcon />,
+    category: 'automation',
   },
   {
     id: 'model',
     name: 'Custom AI Model Training',
     description: 'Develop and train bespoke AI models on your data to solve unique business challenges.',
-    icon: <ModelIcon />
+    icon: <ModelIcon />,
+    category: 'automation',
   },
   {
     id: 'business_plan',
     name: 'AI Business Plan Generator',
     description: 'Answer a few questions to generate a comprehensive business plan, including market and competitor analysis.',
-    icon: <BusinessIcon />
+    icon: <BusinessIcon />,
+    category: 'other',
   },
   {
     id: 'voice_agent',
     name: 'AI Voice Agent',
     description: 'Experience a live, voice-based conversation with our advanced AI assistant. Perfect for interactive demos.',
-    icon: <VoiceIcon />
+    icon: <VoiceIcon />,
+    category: 'communication',
   },
   {
     id: 'snake',
     name: 'Just for Fun: Snake',
     description: 'Take a break and play a classic game of Snake. A small demo of interactive development.',
-    icon: <GameIcon />
+    icon: <GameIcon />,
+    category: 'other',
   },
 ];
 
 const GENERAL_QUESTIONS: Question[] = [
   {
     text: "First, could you describe your business or industry? This helps us understand your unique landscape.",
-    options: ["E-commerce", "SaaS / Technology", "Healthcare", "Finance & Fintech", "Education", "Other"]
+    options: ["E-commerce", "SaaS / Technology", "Healthcare", "Finance & Fintech", "Education", "Restaurant/Food", "Automotive", "Construction", "Other"]
   },
   {
     text: "What specific challenge or opportunity are you hoping to address with AI?",
-    options: ["Improve Customer Support", "Automate Content Creation", "Streamline Business Processes", "Data Analysis & Insights", "Lead Generation & Sales", "Other"]
+    options: ["Improve Customer Support", "Automate Content Creation", "Streamline Business Processes", "Data Analysis & Insights", "Lead Generation & Sales", "Appointment Booking", "Order Management", "Other"]
   },
   {
     text: "What does a successful outcome look like for you?",
-    options: ["Increase Revenue", "Reduce Operational Costs", "Improve Team Efficiency", "Enhance Customer Satisfaction", "Gain a Competitive Edge", "Other"]
+    options: ["Increase Revenue", "Reduce Operational Costs", "Improve Team Efficiency", "Enhance Customer Satisfaction", "Gain a Competitive Edge", "24/7 Availability", "Other"]
   },
   {
     text: "What's your current experience level with AI solutions?",
@@ -235,4 +263,62 @@ export const BUSINESS_PLAN_QUESTIONS: string[] = [
   "Who is your target customer? Be as specific as possible. (e.g., 'Urban professionals aged 25-40', 'Eco-conscious families')",
   "What is the primary goal of your business for the first year? (e.g., 'Reach $100k in revenue', 'Acquire 1,000 paying customers')",
   "What is your proposed business name? (This will be used to personalize your plan)"
+];
+
+// ===== RESTAURANT MENU (for demo) =====
+export const SAMPLE_MENU = {
+  categories: [
+    {
+      name: 'Starters',
+      items: [
+        { id: 's1', name: 'Garlic Bread', price: 5.99, description: 'Crispy bread with garlic butter' },
+        { id: 's2', name: 'Caesar Salad', price: 8.99, description: 'Fresh romaine with caesar dressing' },
+        { id: 's3', name: 'Soup of the Day', price: 6.99, description: 'Ask about today\'s special' },
+      ]
+    },
+    {
+      name: 'Main Courses',
+      items: [
+        { id: 'm1', name: 'Grilled Salmon', price: 22.99, description: 'Atlantic salmon with seasonal vegetables' },
+        { id: 'm2', name: 'Chicken Parmesan', price: 18.99, description: 'Breaded chicken with marinara sauce' },
+        { id: 'm3', name: 'Beef Burger', price: 15.99, description: 'Angus beef with all the fixings' },
+        { id: 'm4', name: 'Pasta Primavera', price: 14.99, description: 'Fresh vegetables in creamy sauce' },
+      ]
+    },
+    {
+      name: 'Desserts',
+      items: [
+        { id: 'd1', name: 'Chocolate Cake', price: 7.99, description: 'Rich chocolate layer cake' },
+        { id: 'd2', name: 'Cheesecake', price: 8.99, description: 'New York style cheesecake' },
+        { id: 'd3', name: 'Ice Cream', price: 5.99, description: 'Three scoops of your choice' },
+      ]
+    }
+  ]
+};
+
+// ===== SAMPLE SERVICES (for Salon demo) =====
+export const SALON_SERVICES = [
+  { id: 'haircut', name: 'Haircut', duration: 30, price: 35 },
+  { id: 'coloring', name: 'Hair Coloring', duration: 90, price: 85 },
+  { id: 'styling', name: 'Styling', duration: 45, price: 50 },
+  { id: 'manicure', name: 'Manicure', duration: 30, price: 25 },
+  { id: 'pedicure', name: 'Pedicure', duration: 45, price: 35 },
+  { id: 'facial', name: 'Facial Treatment', duration: 60, price: 65 },
+];
+
+// ===== SAMPLE DOCTORS (for Clinic demo) =====
+export const CLINIC_DOCTORS = [
+  { id: 'dr1', name: 'Dr. Sarah Johnson', specialty: 'General Practice', available: ['Mon', 'Wed', 'Fri'] },
+  { id: 'dr2', name: 'Dr. Michael Chen', specialty: 'Pediatrics', available: ['Tue', 'Thu', 'Sat'] },
+  { id: 'dr3', name: 'Dr. Emily Williams', specialty: 'Dermatology', available: ['Mon', 'Tue', 'Wed'] },
+  { id: 'dr4', name: 'Dr. James Brown', specialty: 'Cardiology', available: ['Wed', 'Thu', 'Fri'] },
+];
+
+// ===== SAMPLE VEHICLES (for Dealership demo) =====
+export const DEALERSHIP_VEHICLES = [
+  { id: 'v1', make: 'Toyota', model: 'Camry', year: 2024, price: 28500, type: 'Sedan', available: true },
+  { id: 'v2', make: 'Honda', model: 'CR-V', year: 2024, price: 32000, type: 'SUV', available: true },
+  { id: 'v3', make: 'Ford', model: 'F-150', year: 2024, price: 45000, type: 'Truck', available: true },
+  { id: 'v4', make: 'Tesla', model: 'Model 3', year: 2024, price: 42000, type: 'Electric', available: false },
+  { id: 'v5', make: 'BMW', model: 'X5', year: 2024, price: 65000, type: 'Luxury SUV', available: true },
 ];
