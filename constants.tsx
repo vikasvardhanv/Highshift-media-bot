@@ -1,6 +1,14 @@
 
 import React from 'react';
 import type { Service, Question } from './types';
+import { IndustryAgentsIcon } from './components/icons/IndustryAgentsIcon';
+import { MarketingHubIcon } from './components/icons/MarketingHubIcon';
+import { ClinicIcon, ConstructionIcon, DealershipIcon, RestaurantIcon, SalonIcon } from './components/icons/AgentIcons';
+import { EmailIcon, SocialMediaIcon } from './components/icons/MarketingIcons';
+import type { IndustryAgent } from './types';
+
+export { IndustryAgentsIcon, MarketingHubIcon, ClinicIcon, ConstructionIcon, DealershipIcon, RestaurantIcon, SalonIcon, EmailIcon, SocialMediaIcon };
+
 
 export const BrandLogo = ({ className = "h-32 w-32" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -242,4 +250,110 @@ export const BUSINESS_PLAN_QUESTIONS: string[] = [
   "Who is your target customer? Be as specific as possible. (e.g., 'Urban professionals aged 25-40', 'Eco-conscious families')",
   "What is the primary goal of your business for the first year? (e.g., 'Reach $100k in revenue', 'Acquire 1,000 paying customers')",
   "What is your proposed business name? (This will be used to personalize your plan)"
+];
+
+// ===== RESTAURANT MENU (for demo) =====
+export const SAMPLE_MENU = {
+  categories: [
+    {
+      name: 'Starters',
+      items: [
+        { id: 's1', name: 'Garlic Bread', price: 5.99, description: 'Crispy bread with garlic butter' },
+        { id: 's2', name: 'Caesar Salad', price: 8.99, description: 'Fresh romaine with caesar dressing' },
+        { id: 's3', name: 'Soup of the Day', price: 6.99, description: 'Ask about today\'s special' },
+      ]
+    },
+    {
+      name: 'Main Courses',
+      items: [
+        { id: 'm1', name: 'Grilled Salmon', price: 22.99, description: 'Atlantic salmon with seasonal vegetables' },
+        { id: 'm2', name: 'Chicken Parmesan', price: 18.99, description: 'Breaded chicken with marinara sauce' },
+        { id: 'm3', name: 'Beef Burger', price: 15.99, description: 'Angus beef with all the fixings' },
+        { id: 'm4', name: 'Pasta Primavera', price: 14.99, description: 'Fresh vegetables in creamy sauce' },
+      ]
+    },
+    {
+      name: 'Desserts',
+      items: [
+        { id: 'd1', name: 'Chocolate Cake', price: 7.99, description: 'Rich chocolate layer cake' },
+        { id: 'd2', name: 'Cheesecake', price: 8.99, description: 'New York style cheesecake' },
+        { id: 'd3', name: 'Ice Cream', price: 5.99, description: 'Three scoops of your choice' },
+      ]
+    }
+  ]
+};
+
+// ===== SAMPLE SERVICES (for Salon demo) =====
+export const SALON_SERVICES = [
+  { id: 'haircut', name: 'Haircut', duration: 30, price: 35 },
+  { id: 'coloring', name: 'Hair Coloring', duration: 90, price: 85 },
+  { id: 'styling', name: 'Styling', duration: 45, price: 50 },
+  { id: 'manicure', name: 'Manicure', duration: 30, price: 25 },
+  { id: 'pedicure', name: 'Pedicure', duration: 45, price: 35 },
+  { id: 'facial', name: 'Facial Treatment', duration: 60, price: 65 },
+];
+
+// ===== SAMPLE DOCTORS (for Clinic demo) =====
+export const CLINIC_DOCTORS = [
+  { id: 'dr1', name: 'Dr. Sarah Johnson', specialty: 'General Practice', available: ['Mon', 'Wed', 'Fri'] },
+  { id: 'dr2', name: 'Dr. Michael Chen', specialty: 'Pediatrics', available: ['Tue', 'Thu', 'Sat'] },
+  { id: 'dr3', name: 'Dr. Emily Williams', specialty: 'Dermatology', available: ['Mon', 'Tue', 'Wed'] },
+  { id: 'dr4', name: 'Dr. James Brown', specialty: 'Cardiology', available: ['Wed', 'Thu', 'Fri'] },
+];
+
+// ===== SAMPLE VEHICLES (for Dealership demo) =====
+export const DEALERSHIP_VEHICLES = [
+  { id: 'v1', make: 'Toyota', model: 'Camry', year: 2024, price: 28500, type: 'Sedan', available: true },
+  { id: 'v2', make: 'Honda', model: 'CR-V', year: 2024, price: 32000, type: 'SUV', available: true },
+  { id: 'v3', make: 'Ford', model: 'F-150', year: 2024, price: 45000, type: 'Truck', available: true },
+  { id: 'v4', make: 'Tesla', model: 'Model 3', year: 2024, price: 42000, type: 'Electric', available: false },
+  { id: 'v5', make: 'BMW', model: 'X5', year: 2024, price: 65000, type: 'Luxury SUV', available: true },
+];
+
+export const INDUSTRY_AGENTS: IndustryAgent[] = [
+  {
+    id: 'clinic',
+    name: 'Clinic Agent',
+    industry: 'Healthcare',
+    description: 'Automated patient scheduling, triage, and FAQs for medical clinics.',
+    icon: <ClinicIcon />,
+    features: ['Appointment Booking', 'Symptom Triage', 'Patient FAQs', 'Prescription Refills'],
+    demoAvailable: true
+  },
+  {
+    id: 'construction',
+    name: 'Construction Agent',
+    industry: 'Construction',
+    description: 'Project management, safety compliance, and resource allocation assistant.',
+    icon: <ConstructionIcon />,
+    features: ['Project Tracking', 'Safety Checklists', 'Resource Management', 'Daily Reports'],
+    demoAvailable: true
+  },
+  {
+    id: 'dealership',
+    name: 'Dealership Agent',
+    industry: 'Automotive',
+    description: 'Vehicle inventory, test drive scheduling, and service appointments.',
+    icon: <DealershipIcon />,
+    features: ['Inventory Search', 'Test Drive Booking', 'Service Scheduling', 'Financing Calc'],
+    demoAvailable: true
+  },
+  {
+    id: 'restaurant',
+    name: 'Restaurant Agent',
+    industry: 'Hospitality',
+    description: 'Table reservations, menu inquiries, and order management.',
+    icon: <RestaurantIcon />,
+    features: ['Table Reservations', 'Menu Q&A', 'Order Taking', 'Event Booking'],
+    demoAvailable: true
+  },
+  {
+    id: 'salon',
+    name: 'Salon Agent',
+    industry: 'Beauty & Wellness',
+    description: 'Appointment booking, stylist selection, and service consultations.',
+    icon: <SalonIcon />,
+    features: ['Appointment Booking', 'Stylist Selection', 'Service Menu', 'Reminders'],
+    demoAvailable: true
+  }
 ];
